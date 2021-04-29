@@ -1,0 +1,39 @@
+CREATE TABLE `affiliated_societies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `index2` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `affiliated_societies_staff` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `type` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `index2` (`name`),
+  KEY `index3` (`type`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `affiliated_societies_staff_to_affiliated_societies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `affiliated_societies_staff_id` int(11) NOT NULL,
+  `affiliated_societies_id` varchar(45) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  KEY `index2` (`affiliated_societies_staff_id`),
+  KEY `index3` (`affiliated_societies_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `affiliated_societies_staff_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  KEY `index2` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+
+INSERT INTO `affiliated_societies_staff_types` VALUES (1,'ИТР'),(2,'Работник предприятия');
+INSERT INTO `affiliated_societies_staff_to_affiliated_societies` VALUES (1,1,'1'),(2,2,'1'),(3,3,'1'),(4,4,'2'),(5,5,'2'),(6,6,'3'),(7,7,'3'),(8,8,'3'),(9,1,'3'),(10,2,'3');
+INSERT INTO `affiliated_societies_staff` VALUES (1,'staff_1',1),(2,'staff_2',1),(3,'staff_3',2),(4,'staff_4',1),(5,'staff_5',2),(6,'staff_6',2),(7,'staff_7',2),(8,'staff_8',1);
+INSERT INTO `affiliated_societies` VALUES (1,'Филиал 1'),(2,'Филиал 2'),(3,'Филиал 3');
